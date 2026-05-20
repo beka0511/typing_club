@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажёр клавиатуры</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Тренажёр клавиатуры</div>
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="home">Главная</a></li>
+                <li><a href="#" class="nav-link" data-page="training">Тренировка</a></li>
+                <li><a href="#" class="nav-link" data-page="records">Рекорды</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+    </header>
+
+    <main>
+        <!-- Главная страница -->
+        <section id="home" class="page active">
+            <div class="card">
+                <h1>Тренажёр клавиатуры</h1>
+                <p>Улучшите свою скорость и точность печати с помощью нашего тренажёра. Выберите уровень сложности и начните тренировку прямо сейчас!</p>
+                
+                <div class="difficulty-selector">
+                    <button class="btn difficulty-btn active" data-difficulty="easy">Лёгкий</button>
+                    <button class="btn difficulty-btn" data-difficulty="medium">Средний</button>
+                    <button class="btn difficulty-btn" data-difficulty="hard">Сложный</button>
+                </div>
+                
+                <div class="timer-selector">
+                    <button class="btn timer-btn" data-time="30">30 сек</button>
+                    <button class="btn timer-btn active" data-time="60">60 сек</button>
+                    <button class="btn timer-btn" data-time="120">120 сек</button>
+                </div>
+                
+                <button class="btn" id="startTraining">Начать тренировку</button>
+            </div>
+            
+            <div class="card">
+                <h2>Как это работает?</h2>
+                <p>1. Выберите уровень сложности и время тренировки</p>
+                <p>2. Нажмите "Начать тренировку"</p>
+                <p>3. Печатайте предложенный текст как можно быстрее и точнее</p>
+                <p>4. По окончании времени вы увидите свои результаты</p>
+                <p>5. Сравните свои достижения в таблице рекордов</p>
+            </div>
+        </section>
+
+        <!-- Страница тренировки -->
+        <section id="training" class="page">
+            <div class="card">
+                <h2>Тренировка</h2>
+                <div class="training-area">
+                    <div class="text-display" id="textDisplay"></div>
+                    <input type="text" class="input-area" id="textInput" placeholder="Начните печатать здесь...">
+                    
+                    <div class="stats">
+                        <div class="stat-item">
+                            <div class="stat-value" id="wpm">0</div>
+                            <div class="stat-label">слов/мин</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="accuracy">100%</div>
+                            <div class="stat-label">точность</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value" id="errors">0</div>
+                            <div class="stat-label">ошибки</div>
+                        </div>
+                    </div>
+                    
+                    <div class="timer" id="timer">60</div>
+                    
+                    <div class="virtual-keyboard" id="virtualKeyboard">
+                        <!-- Виртуальная клавиатура будет сгенерирована через JavaScript -->
+                    </div>
+                </div>
+                
+                <button class="btn" id="restartTraining">Начать заново</button>
+                <button class="btn btn-secondary" id="backToHome">На главную</button>
+            </div>
+        </section>
+
+        <!-- Страница рекордов -->
+        <section id="records" class="page">
+            <div class="card">
+                <h2>Таблица рекордов</h2>
+                
+                <div id="recordsTable">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Скорость (слов/мин)</th>
+                                <th>Точность</th>
+                                <th>Ошибки</th>
+                                <th>Уровень</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recordsBody">
+                            <!-- Записи будут добавлены через JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="no-results" id="noResults" style="display: none;">
+                    <p>Пока нет сохранённых результатов. Пройдите тренировку!</p>
+                </div>
+                
+                <button class="btn btn-danger" id="clearRecords">Очистить рекорды</button>
+                <button class="btn btn-secondary" id="backToHomeFromRecords">На главную</button>
+            </div>
+        </section>
+        
+        <!-- Результаты тренировки -->
+        <div id="resultsModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="results">
+                    <h2>Тренировка завершена!</h2>
+                    <div class="results-stats">
+                        <div class="result-item">
+                            <div class="result-value" id="resultWpm">0</div>
+                            <div class="result-label">слов/мин</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-value" id="resultAccuracy">100%</div>
+                            <div class="result-label">точность</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="result-value" id="resultErrors">0</div>
+                            <div class="result-label">ошибки</div>
+                        </div>
+                    </div>
+                    <button class="btn" id="closeResults">Продолжить</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Тренажёр клавиатуры &copy; 2023</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
